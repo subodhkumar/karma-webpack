@@ -22,12 +22,14 @@ describe('A basic karma-webpack setup', () => {
 
   const TEST_PATH_FAILING = path.resolve(__dirname, './index.scenario.js');
   const TEST_PATH_PASSING = path.resolve(__dirname, './js-test-passes.js');
+  /* Settign it root of the project & using it as `preprocessor` pattern at Line #32*/
+  const TEST_PATH_ES = path.resolve(__dirname, '../../../../**/*.js');
 
   const config = {
     frameworks: ['mocha', 'chai', 'webpack'],
     files: [{ pattern: TEST_PATH_FAILING }, TEST_PATH_PASSING],
     exclude: [TEST_PATH_FAILING],
-    preprocessors: { [TEST_PATH_FAILING]: ['webpack'] },
+    preprocessors: { [TEST_PATH_ES]: ['webpack'] },
     webpack: {},
     browsers: ['ChromeHeadless'],
     // Explicitly turn off reporters so the simulated test results are not confused with the actual results.
